@@ -42,3 +42,7 @@ jobs:
             docker rm todo-app || true
             docker image prune -f
             docker run -d -p 3000:5173 --name todo-app ${{ secrets.DOCKERHUB_USERNAME }}/docker-capstone-project-server:latest
+            
+            docker stop todo-app || true  
+            docker rm todo-app || true
+            docker image prune -f
