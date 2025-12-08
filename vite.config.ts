@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development"
       ? {
           name: "inject-chef-dev",
-          transform(code, id) { // removed strict type annotation for JS compatibility if needed
+          transform(code: string, id: string) { // removed strict type annotation for JS compatibility if needed
             if (id.includes("main.tsx")) {
               return {
                 code: `${code}
