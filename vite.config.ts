@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development"
       ? {
           name: "inject-chef-dev",
-          transform(code: string, id: string) {
+          transform(code, id) { // removed strict type annotation for JS compatibility if needed
             if (id.includes("main.tsx")) {
               return {
                 code: `${code}
@@ -40,4 +40,13 @@ window.addEventListener('message', async (message) => {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  
+  // --- ADDED CONFIGURATION BELOW ---
+  server: {
+    host: true, // binds to 0.0.0.0 so external traffic can reach it
+    port: 3000, 
+    allowedHosts: [
+      "todoapp.uksouth.cloudapp.azure.com"
+    ]
+  }
 }));
